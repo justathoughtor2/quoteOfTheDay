@@ -2,3 +2,4 @@ Flask
 Werkzeug
 requests_html
 Pillow
+APScheduler
