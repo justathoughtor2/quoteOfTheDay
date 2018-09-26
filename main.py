@@ -18,11 +18,6 @@ app = Flask(__name__)
 
 output = BytesIO()
 
-generate_image()
-
-scheduler = BackgroundScheduler(timezone=utc)
-scheduler.add_job(func=generate_image, trigger='cron', hour=0, minute=5)
-
 def generate_image():
 	session = HTMLSession()
 	r = session.get('https://en.wikiquote.org/wiki/Wikiquote:Quote_of_the_day?action=render')
@@ -33,6 +28,11 @@ def generate_image():
     d.multiline_text((10,10), wikitext, font=fnt, fill='black', spacing=6)
     img.save(output, format='PNG')
     output.seek(0)
+
+generate_image()
+
+scheduler = BackgroundScheduler(timezone=utc)
+scheduler.add_job(func=generate_image, trigger='cron', hour=0, minute=5)
 
 @app.route('/')
 def hello():
