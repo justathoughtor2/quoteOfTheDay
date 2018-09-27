@@ -24,7 +24,9 @@ def hello():
     output = BytesIO()
     img.save(output, format='PNG')
     output.seek(0)
-    return send_file(output, mimetype='image/png')
+    resp = send_file(output, mimetype='image/png')
+    resp.headers['Cache-Control'] = 'no-cache'
+    return resp
 
 @app.errorhandler(500)
 def server_error(e):
