@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 import time
 import atexit
 
-from appschduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 
