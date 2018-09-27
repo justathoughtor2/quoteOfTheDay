@@ -18,6 +18,7 @@ app = Flask(__name__)
 def hello():
     r = session.get('https://en.wikiquote.org/wiki/Wikiquote:Quote_of_the_day?action=render')
     wikitext = r.html.find('div > center > table', first=True).text
+    logging.info(wikitext)
     img = Image.new('RGB', (800,150), color='white')
     fnt = ImageFont.truetype('Montserrat-Regular.ttf', 14)
     d = ImageDraw.Draw(img)
