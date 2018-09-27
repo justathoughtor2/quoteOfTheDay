@@ -18,9 +18,10 @@ app = Flask(__name__)
 
 output = BytesIO()
 
+session = HTMLSession()
+
 def generate_image():
-	session = HTMLSession()
-	r = session.get('https://en.wikiquote.org/wiki/Wikiquote:Quote_of_the_day?action=render')
+    r = session.get('https://en.wikiquote.org/wiki/Wikiquote:Quote_of_the_day?action=render')
     wikitext = r.html.find('div > center > table', first=True).text
     img = Image.new('RGB', (800,150), color='white')
     fnt = ImageFont.truetype('Montserrat-Regular.ttf', 14)
