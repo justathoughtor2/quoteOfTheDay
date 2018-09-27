@@ -9,9 +9,6 @@ from requests_html import HTMLSession
 
 from PIL import Image, ImageDraw, ImageFont
 
-import time
-import atexit
-
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
@@ -32,7 +29,7 @@ def generate_image():
 
 generate_image()
 
-scheduler = BackgroundScheduler(timezone=utc)
+scheduler = BackgroundScheduler(timezone='utc')
 scheduler.add_job(func=generate_image, trigger='cron', hour=0, minute=5)
 
 @app.route('/')
