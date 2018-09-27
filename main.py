@@ -16,6 +16,7 @@ def hello():
     session = HTMLSession()
     r = session.get('https://en.wikiquote.org/wiki/Wikiquote:Quote_of_the_day?action=render')
     wikitext = r.html.find('div > center > table', first=True).text
+    logging.info(wikitext)
     img = Image.new('RGB', (800,150), color='white')
     fnt = ImageFont.truetype('Montserrat-Regular.ttf', 14)
     d = ImageDraw.Draw(img)
@@ -23,7 +24,7 @@ def hello():
     output = BytesIO()
     img.save(output, format='PNG')
     output.seek(0)
-    return send_file(output, mimetype='image/png'), 200
+    return send_file(output, mimetype='image/png')
 
 @app.errorhandler(500)
 def server_error(e):
