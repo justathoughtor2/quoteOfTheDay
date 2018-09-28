@@ -18,7 +18,7 @@ def hello():
     session = HTMLSession()
     r = session.get('https://en.wikiquote.org/wiki/Wikiquote:Quote_of_the_day?action=render')
     wikitext = re.sub('(.{70,80} )', '\\1\n', r.html.find('div > center > table', first=True).text, flags=re.DOTALL)
-    height = 40 + 40 * wikitext.count('\n') if wikitext.count('\n') > 1 else 80
+    height = 30 + 30 * wikitext.count('\n') if wikitext.count('\n') > 1 else 90
     logging.info(wikitext)
     img = Image.new('RGB', (800,height), color='white')
     fnt = ImageFont.truetype('Montserrat-Regular.ttf', 14)
