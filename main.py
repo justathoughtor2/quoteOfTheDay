@@ -27,7 +27,7 @@ def hello():
     output = BytesIO()
     img.save(output, format='PNG')
     output.seek(0)
-    resp = send_file(output, mimetype='image/png', as_attachment=True, attachment_filename='qotd.png')
+    resp = send_file(output, mimetype='image/png')
     resp.headers['Cache-Control'] = 'no-cache'
     return resp
 
