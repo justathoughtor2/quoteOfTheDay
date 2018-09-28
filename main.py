@@ -28,7 +28,7 @@ def hello():
     img.save(output, format='PNG')
     output.seek(0)
     resp = send_file(output, mimetype='image/png')
-    resp.headers['Cache-Control'] = 'no-cache'
+    resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     return resp
 
 @app.errorhandler(500)
